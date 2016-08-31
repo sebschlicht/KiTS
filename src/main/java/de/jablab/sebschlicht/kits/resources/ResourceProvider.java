@@ -1,9 +1,9 @@
-package de.jablab.sebschlicht.series.resources;
+package de.jablab.sebschlicht.kits.resources;
 
 import java.io.File;
 
 import android.net.Uri;
-import de.jablab.sebschlicht.series.model.Series;
+import de.jablab.sebschlicht.kits.model.Series;
 
 /**
  * Provides access to the resource files needed by this activity to handle a

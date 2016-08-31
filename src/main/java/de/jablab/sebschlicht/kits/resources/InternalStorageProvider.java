@@ -1,4 +1,4 @@
-package de.jablab.sebschlicht.series.resources;
+package de.jablab.sebschlicht.kits.resources;
 
 import java.io.File;
 

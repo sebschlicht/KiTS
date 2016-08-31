@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import de.jablab.sebschlicht.series.R;
+import de.jablab.sebschlicht.kits.R;
 
 public class ProgressBarTextView extends TextView {
 
@@ -30,7 +30,7 @@ public class ProgressBarTextView extends TextView {
             Context context,
             AttributeSet attrs) {
         super(context, attrs);
-        init(attrs);
+        this.init(attrs);
     }
 
     public ProgressBarTextView(
@@ -38,24 +38,23 @@ public class ProgressBarTextView extends TextView {
             AttributeSet attrs,
             int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(attrs);
+        this.init(attrs);
     }
 
     protected void init(AttributeSet attrs) {
         TypedArray a =
-                getContext().obtainStyledAttributes(attrs,
+                this.getContext().obtainStyledAttributes(attrs,
                         R.styleable.ProgressBarTextView);
 
         try {
-            setIdleColor(a.getColor(R.styleable.ProgressBarTextView_idleColor,
+            this.setIdleColor(a.getColor(R.styleable.ProgressBarTextView_idleColor,
                     color.black));
-            setProgressColor(a.getColor(
+            this.setProgressColor(a.getColor(
                     R.styleable.ProgressBarTextView_progressColor, color.white));
             int progressBarId =
-                    a.getResourceId(
-                            R.styleable.ProgressBarTextView_progressBar, -1);
+                    a.getResourceId(R.styleable.ProgressBarTextView_progressBar, -1);
             if (progressBarId != -1) {
-                setProgressBar((ProgressBar) findViewById(progressBarId));
+                this.setProgressBar((ProgressBar) this.findViewById(progressBarId));
             }
         } finally {
             a.recycle();
@@ -63,56 +62,56 @@ public class ProgressBarTextView extends TextView {
     }
 
     public void setProgressBar(ProgressBar progressBar) {
-        _progressBar = progressBar;
+        this._progressBar = progressBar;
     }
 
     public void setProgressColor(int progressColor) {
-        _progressColor = progressColor;
+        this._progressColor = progressColor;
     }
 
     public void setIdleColor(int idleColor) {
-        _idleColor = idleColor;
+        this._idleColor = idleColor;
     }
 
     public void setDebugMode(boolean debug) {
-        _debug = debug;
+        this._debug = debug;
     }
 
     @Override
     public void draw(Canvas canvas) {
-        if (_progressBar == null) {
+        if (this._progressBar == null) {
             super.draw(canvas);
             Log.i("ProgressBarTextView", "No progress bar set.");
             return;
         }
         int absOverlap =
-                (int) (_progressBar.getWidth()
-                        * (_progressBar.getProgress() / (float) _progressBar
-                                .getMax()) - getLeft());
-        float overlap = absOverlap / (float) getWidth();
+                (int) (this._progressBar.getWidth()
+                        * (this._progressBar.getProgress() / (float) this._progressBar
+                                .getMax()) - this.getLeft());
+        float overlap = absOverlap / (float) this.getWidth();
 
         if (absOverlap > 0) {
             // text view is (up to fully) in progress
-            if (_debug) {
+            if (this._debug) {
                 Log.d("ProgressBarTextView", "Text view is to " + overlap
                         + " in progress bar.");
             }
             canvas.save();
-            setTextColor(_progressColor);
-            canvas.clipRect(new Rect(0, 0, (int) (getWidth() * overlap),
-                    getHeight()));
+            this.setTextColor(this._progressColor);
+            canvas.clipRect(new Rect(0, 0, (int) (this.getWidth() * overlap), this
+                    .getHeight()));
             super.draw(canvas);
             canvas.restore();
         }
         if (overlap < 1) {
             // text view is (up to fully) in idle range
-            if (_debug) {
+            if (this._debug) {
                 Log.d("ProgressBarTextView", "Text view isn't in progress bar.");
             }
             canvas.save();
-            setTextColor(_idleColor);
-            canvas.clipRect(new Rect((int) (getWidth() * overlap), 0,
-                    getWidth(), getHeight()));
+            this.setTextColor(this._idleColor);
+            canvas.clipRect(new Rect((int) (this.getWidth() * overlap), 0, this
+                    .getWidth(), this.getHeight()));
             super.draw(canvas);
             canvas.restore();
         }

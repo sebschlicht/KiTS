@@ -1,4 +1,4 @@
-package de.jablab.sebschlicht.series.activities;
+package de.jablab.sebschlicht.kits.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -17,10 +17,10 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 import de.jablab.sebschlicht.android.kits.commands.Command;
 import de.jablab.sebschlicht.android.kits.commands.SetVolumeCommand;
-import de.jablab.sebschlicht.series.R;
-import de.jablab.sebschlicht.series.SeriesSession;
-import de.jablab.sebschlicht.series.activities.preferences.PlaySeriesPreferences;
-import de.jablab.sebschlicht.series.tasks.SendCommandTask;
+import de.jablab.sebschlicht.kits.R;
+import de.jablab.sebschlicht.kits.SeriesSession;
+import de.jablab.sebschlicht.kits.activities.preferences.PlaySeriesPreferences;
+import de.jablab.sebschlicht.kits.tasks.SendCommandTask;
 
 /**
  * Basic class for activities in KiTS.
@@ -206,7 +206,7 @@ abstract public class KitsActivity extends Activity {
                 this.audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
         float mediaVolumePercentage =
                 this.audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
-                / maxMediaVolume;
+                        / maxMediaVolume;
         return (int) (mediaVolumePercentage * 100);
     }
 
@@ -220,6 +220,6 @@ abstract public class KitsActivity extends Activity {
         Log.d("Server", "volume: " + playbackVolume);
         final Command command = new SetVolumeCommand(playbackVolume);
         new SendCommandTask(SESSION.getServerAddress(), KitsActivity.KITS_SERVER_PORT)
-                .execute(command);
+        .execute(command);
     }
 }

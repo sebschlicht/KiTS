@@ -1,4 +1,4 @@
-package de.jablab.sebschlicht.series.activities;
+package de.jablab.sebschlicht.kits.activities;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,12 +13,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import de.jablab.sebschlicht.series.R;
-import de.jablab.sebschlicht.series.SeriesSession;
-import de.jablab.sebschlicht.series.model.Series;
-import de.jablab.sebschlicht.series.resources.InternalStorageProvider;
-import de.jablab.sebschlicht.series.tasks.FindServerTask;
-import de.jablab.sebschlicht.series.tasks.TaskCallback;
+import de.jablab.sebschlicht.kits.R;
+import de.jablab.sebschlicht.kits.SeriesSession;
+import de.jablab.sebschlicht.kits.model.Series;
+import de.jablab.sebschlicht.kits.resources.InternalStorageProvider;
+import de.jablab.sebschlicht.kits.tasks.FindServerTask;
+import de.jablab.sebschlicht.kits.tasks.TaskCallback;
 
 /**
  * Application startup activity that allows users to start the series guessing
@@ -137,7 +137,7 @@ public class ChooseSeries extends KitsActivity implements TaskCallback<String> {
 
     @Override
     public void
-    handleResult(String result, Class<? extends AsyncTask<?, ?, ?>> taskClass) {
+        handleResult(String result, Class<? extends AsyncTask<?, ?, ?>> taskClass) {
         if (result == null) {
             Toast.makeText(this.getApplicationContext(), "no KiTS server available",
                     Toast.LENGTH_LONG).show();

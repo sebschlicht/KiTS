@@ -1,11 +1,11 @@
-package de.jablab.sebschlicht.series.activities.preferences;
+package de.jablab.sebschlicht.kits.activities.preferences;
 
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.view.WindowManager;
-import de.jablab.sebschlicht.series.R;
+import de.jablab.sebschlicht.kits.R;
 
 public class PlaySeriesPreferences extends PreferenceActivity {
 
@@ -21,7 +21,7 @@ public class PlaySeriesPreferences extends PreferenceActivity {
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         String key = preference.getKey();
         String[] keys = new String[] {
-            "playback_device_auto", "playback_device_device", "playback_device_server"
+                "playback_device_auto", "playback_device_device", "playback_device_server"
         };
 
         if (key.startsWith("playback_device")) {

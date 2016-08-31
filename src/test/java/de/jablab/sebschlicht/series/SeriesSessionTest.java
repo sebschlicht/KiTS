@@ -9,6 +9,8 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import de.jablab.sebschlicht.kits.SeriesSession;
+
 public class SeriesSessionTest {
 
     private static final String PATH_VALID = "src/test/resources/raw/valid.csv";

@@ -1,4 +1,4 @@
-package de.jablab.sebschlicht.series.activities;
+package de.jablab.sebschlicht.kits.activities;
 
 import java.util.Timer;
 
@@ -14,10 +14,10 @@ import android.widget.TextView;
 import de.jablab.sebschlicht.android.kits.commands.IntroType;
 import de.jablab.sebschlicht.android.kits.commands.PlayCommand;
 import de.jablab.sebschlicht.android.kits.commands.StopCommand;
-import de.jablab.sebschlicht.series.R;
-import de.jablab.sebschlicht.series.activities.preferences.PlaybackDevice;
-import de.jablab.sebschlicht.series.resources.ResourceProvider;
-import de.jablab.sebschlicht.series.tasks.SendCommandTask;
+import de.jablab.sebschlicht.kits.R;
+import de.jablab.sebschlicht.kits.activities.preferences.PlaybackDevice;
+import de.jablab.sebschlicht.kits.resources.ResourceProvider;
+import de.jablab.sebschlicht.kits.tasks.SendCommandTask;
 
 /**
  * Activity to reveal the series.<br>
@@ -137,7 +137,7 @@ public class RevealSeries extends KitsSeriesActivity {
         if (SESSION.isConnected() && this.playbackDevice != PlaybackDevice.DEVICE) {
             // start remote playback,
             new SendCommandTask(SESSION.getServerAddress(), KITS_SERVER_PORT)
-                    .execute(new PlayCommand(this.series.getName(), IntroType.FULL));
+            .execute(new PlayCommand(this.series.getName(), IntroType.FULL));
 
             // TODO stop remote playback if switching to local playback in
             // preferences
@@ -149,7 +149,7 @@ public class RevealSeries extends KitsSeriesActivity {
         if (SESSION.isConnected() && this.playbackDevice != PlaybackDevice.DEVICE) {
             // stop playback on server
             new SendCommandTask(SESSION.getServerAddress(), KITS_SERVER_PORT)
-                    .execute(new StopCommand());
+            .execute(new StopCommand());
         }
     }
 

@@ -1,4 +1,4 @@
-package de.jablab.sebschlicht.series.model;
+package de.jablab.sebschlicht.kits.model;
 
 import java.io.Serializable;
 

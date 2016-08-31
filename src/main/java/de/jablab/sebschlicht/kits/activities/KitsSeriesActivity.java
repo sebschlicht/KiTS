@@ -1,8 +1,8 @@
-package de.jablab.sebschlicht.series.activities;
+package de.jablab.sebschlicht.kits.activities;
 
 import android.os.Bundle;
-import de.jablab.sebschlicht.series.activities.preferences.PlaybackDevice;
-import de.jablab.sebschlicht.series.model.Series;
+import de.jablab.sebschlicht.kits.activities.preferences.PlaybackDevice;
+import de.jablab.sebschlicht.kits.model.Series;
 
 /**
  * Base activity for the series guessing process.<br>

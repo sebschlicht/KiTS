@@ -1,4 +1,4 @@
-package de.jablab.sebschlicht.series.resources;
+package de.jablab.sebschlicht.kits.resources;
 
 import java.io.File;
 import java.util.LinkedList;
@@ -6,7 +6,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.net.Uri;
-import de.jablab.sebschlicht.series.model.Series;
+import de.jablab.sebschlicht.kits.model.Series;
 
 /**
  * {@link ResourceProvider} that wraps the other resource providers and thus

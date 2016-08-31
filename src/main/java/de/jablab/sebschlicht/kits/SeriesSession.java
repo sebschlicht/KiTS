@@ -1,4 +1,4 @@
-package de.jablab.sebschlicht.series;
+package de.jablab.sebschlicht.kits;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,8 +19,8 @@ import org.apache.commons.io.Charsets;
 
 import android.util.Log;
 import de.jablab.sebschlicht.android.AndroidTools;
-import de.jablab.sebschlicht.series.model.Series;
-import de.jablab.sebschlicht.series.resources.ResourceProvider;
+import de.jablab.sebschlicht.kits.model.Series;
+import de.jablab.sebschlicht.kits.resources.ResourceProvider;
 
 /**
  * KiTS session that provides access to the series and represents the

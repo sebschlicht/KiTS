@@ -1,4 +1,4 @@
-package de.jablab.sebschlicht.series.activities;
+package de.jablab.sebschlicht.kits.activities;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,10 +19,10 @@ import de.jablab.sebschlicht.android.kits.commands.IntroType;
 import de.jablab.sebschlicht.android.kits.commands.PlayCommand;
 import de.jablab.sebschlicht.android.kits.commands.StopCommand;
 import de.jablab.sebschlicht.android.ui.ProgressBarTextView;
-import de.jablab.sebschlicht.series.R;
-import de.jablab.sebschlicht.series.activities.preferences.PlaybackDevice;
-import de.jablab.sebschlicht.series.resources.ResourceProvider;
-import de.jablab.sebschlicht.series.tasks.SendCommandTask;
+import de.jablab.sebschlicht.kits.R;
+import de.jablab.sebschlicht.kits.activities.preferences.PlaybackDevice;
+import de.jablab.sebschlicht.kits.resources.ResourceProvider;
+import de.jablab.sebschlicht.kits.tasks.SendCommandTask;
 
 public class PlayAudio extends KitsSeriesActivity {
 
@@ -197,7 +197,7 @@ public class PlayAudio extends KitsSeriesActivity {
                             + this.series.getFileName()
                             + " is missing at "
                             + resourceProvider.getAudioFile(this.series)
-                            .getAbsolutePath());
+                                    .getAbsolutePath());
             return;
         }
 
@@ -214,7 +214,7 @@ public class PlayAudio extends KitsSeriesActivity {
         } catch (Exception e) {
             Log.e("playback error",
                     "failed to load series audio file \"" + this.series.getFileName()
-                    + "\"");
+                            + "\"");
         } finally {
             if (fi != null) {
                 try {
@@ -239,7 +239,7 @@ public class PlayAudio extends KitsSeriesActivity {
             // start playback on server
             Log.d("Server", "volume: " + this.getPlaybackVolume());
             new SendCommandTask(SESSION.getServerAddress(), KITS_SERVER_PORT)
-            .execute(new PlayCommand(this.series.getName(), IntroType.SHORT));
+                    .execute(new PlayCommand(this.series.getName(), IntroType.SHORT));
         }
         // this.btnPlayStop.setText("anhalten");
         this.handler.postDelayed(this.UpdatePlayerUI, UPDATE_INTERVAL_UI);
@@ -256,7 +256,7 @@ public class PlayAudio extends KitsSeriesActivity {
         if (SESSION.isConnected() && this.playbackDevice != PlaybackDevice.DEVICE) {
             // stop playback on server
             new SendCommandTask(SESSION.getServerAddress(), KITS_SERVER_PORT)
-            .execute(new StopCommand());
+                    .execute(new StopCommand());
         }
         // this.btnPlayStop.setText("Nochmal hören");
         if (this.numPlayed < 3) {

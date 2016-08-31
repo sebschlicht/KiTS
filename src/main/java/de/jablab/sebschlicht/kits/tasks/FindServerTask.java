@@ -1,4 +1,4 @@
-package de.jablab.sebschlicht.series.tasks;
+package de.jablab.sebschlicht.kits.tasks;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

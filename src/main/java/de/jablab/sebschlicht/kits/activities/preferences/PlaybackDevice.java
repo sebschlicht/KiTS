@@ -1,4 +1,4 @@
-package de.jablab.sebschlicht.series.activities.preferences;
+package de.jablab.sebschlicht.kits.activities.preferences;
 
 /**
  * Target device for playback.<br>

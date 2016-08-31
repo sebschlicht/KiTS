@@ -1,12 +1,12 @@
-package de.jablab.sebschlicht.series.activities;
+package de.jablab.sebschlicht.kits.activities;
 
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.MediaController;
 import android.widget.VideoView;
-import de.jablab.sebschlicht.series.R;
-import de.jablab.sebschlicht.series.resources.ResourceProvider;
+import de.jablab.sebschlicht.kits.R;
+import de.jablab.sebschlicht.kits.resources.ResourceProvider;
 
 /**
  * Video player activity.<br>
