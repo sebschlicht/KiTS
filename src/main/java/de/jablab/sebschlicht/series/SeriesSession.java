@@ -1,9 +1,9 @@
 package de.jablab.sebschlicht.series;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -11,6 +11,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+import org.apache.commons.io.Charsets;
 
 import android.util.Log;
 import de.jablab.sebschlicht.android.AndroidTools;
@@ -55,10 +60,12 @@ public class SeriesSession {
      *            series resource provider
      * @param csvStream
      *            series CSV file stream
+     * @throws IOException
+     *             if the CSV file loading/parsing failed
      */
     public SeriesSession(
             final ResourceProvider resourceProvider,
-            final InputStream csvStream) {
+            final InputStream csvStream) throws IOException {
         this.resourceProvider = resourceProvider;
         this.series = loadSeriesFromResource(csvStream);
         this.unwatchedSeries = new ArrayList<Series>(this.series);
@@ -162,40 +169,42 @@ public class SeriesSession {
      * @param csvStream
      *            series CSV file stream
      * @return series loaded from the CSV file
+     * @throws IOException
+     *             if the CSV file loading/parsing fails
      */
-    protected static List<Series> loadSeriesFromResource(final InputStream csvStream) {
-        //TODO use OpenCSV library
+    protected static List<Series> loadSeriesFromResource(final InputStream csvStream)
+            throws IOException {
         Map<String, Series> series = new HashMap<String, Series>();
-        InputStreamReader is = new InputStreamReader(csvStream);
-        BufferedReader reader = new BufferedReader(is);
 
-        String line;
-        String[] lineParts;
-        Series crrSeries;
-
-        String name;
-        String fileName;
-
+        final Reader reader = new InputStreamReader(csvStream, Charsets.UTF_8);
+        final CSVParser parser =
+                new CSVParser(reader, CSVFormat.DEFAULT.withDelimiter('#').withHeader(
+                        CSVHeaders.class));
         try {
-            while ((line = reader.readLine()) != null) {
-                lineParts = line.split("#");
-                if (lineParts.length != 2) {
-                    throw new IllegalArgumentException("series CSV file malformed: \""
-                            + line + "\"");
+            //TODO is this fail-safely streamed or in-memory?
+            for (CSVRecord record : parser) {
+                if (record.size() != 2) {
+                    Log.w("SeriesSession", "series CSV file malformed: \"" + record
+                            + "\"");
+                    continue;
                 }
 
-                name = lineParts[0];
-                fileName = AndroidTools.toValidResourceName(name);
-
-                crrSeries = new Series(name, fileName);
+                String name = record.get(CSVHeaders.NAME);
+                String fileName = AndroidTools.toValidResourceName(name);
+                Series crrSeries = new Series(name, fileName);
                 series.put(name, crrSeries);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } finally {
+            parser.close();
+            reader.close();
         }
 
         List<Series> list = new ArrayList<Series>(series.values());
         Collections.sort(list);
         return list;
+    }
+
+    private enum CSVHeaders {
+        NAME, SHORT;
     }
 }

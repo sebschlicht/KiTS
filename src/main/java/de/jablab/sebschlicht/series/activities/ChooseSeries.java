@@ -1,10 +1,12 @@
 package de.jablab.sebschlicht.series.activities;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -55,9 +57,13 @@ public class ChooseSeries extends KitsActivity implements TaskCallback<String> {
         if (SESSION == null) {
             final InputStream csvStream =
                     this.getResources().openRawResource(R.raw.series);
-            SESSION =
-                    new SeriesSession(InternalStorageProvider.create(this
-                            .getApplicationContext()), csvStream);
+            try {
+                SESSION =
+                        new SeriesSession(InternalStorageProvider.create(this
+                                .getApplicationContext()), csvStream);
+            } catch (IOException e) {
+                Log.e("ChooseSeries", "Failed to load series!", e);
+            }
             new FindServerTask(this, KITS_SERVER_PORT).execute();
         }
     }
@@ -131,7 +137,7 @@ public class ChooseSeries extends KitsActivity implements TaskCallback<String> {
 
     @Override
     public void
-        handleResult(String result, Class<? extends AsyncTask<?, ?, ?>> taskClass) {
+    handleResult(String result, Class<? extends AsyncTask<?, ?, ?>> taskClass) {
         if (result == null) {
             Toast.makeText(this.getApplicationContext(), "no KiTS server available",
                     Toast.LENGTH_LONG).show();
