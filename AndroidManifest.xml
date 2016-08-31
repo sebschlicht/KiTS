@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="de.jablab.sebschlicht.series"
+    android:installLocation="preferExternal"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="19" />
+
+    <!-- communicate with server -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- store series resources separated from application -->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Kits" >
+        <activity
+            android:name=".activities.ChooseSeries"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.PlayAudio"
+            android:label="@string/app_name"
+            android:parentActivityName=".activities.ChooseSeries"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="de.jablab.sebschlicht.series.activities.preferences.PlaySeriesPreferences"
+            android:label="@string/title_pref_play_series" />
+        <activity
+            android:name=".activities.RevealSeries"
+            android:label="@string/app_name"
+            android:parentActivityName=".activities.PlayAudio"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.PlayVideo"
+            android:label="@string/app_name"
+            android:parentActivityName=".activities.RevealSeries"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+    </application>
+
+</manifest>

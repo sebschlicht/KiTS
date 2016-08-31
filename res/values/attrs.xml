@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <declare-styleable name="ProgressBarTextView">
+       <attr name="idleColor" format="color" />
+       <attr name="progressBar" format="reference" />
+       <attr name="progressColor" format="color" />
+   </declare-styleable>
+</resources>

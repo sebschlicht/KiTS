@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="pastell_gelb">#FFFFC1</color>
+    <color name="online">#00682E</color>
+    <color name="offline">#FF0000</color>
+    <color name="action_bar_top">#AFE455</color>
+    <color name="action_bar_bottom">#97D92E</color>
+    <color name="progress_bar_bg">#6697D92E</color>
+    <color name="button_left">#BCEA6F</color>
+    <color name="button_right">#86D011</color>
+    <color name="button_reveal">#8DBAE2</color>
+</resources>
