@@ -11,6 +11,7 @@ Aus rechtlichen Gründen können mediale Inhalte der Serien (Intro, Bilder, etc.
 ## Ablauf
 
 Der Ablauf ist wie folgt:
+
 1. Ausschnitt des Serien-Intros anhören (bis zu 3x, Audio)
 2. erkannte Serie den Mitspieler mitteilen
 3. Auflösen
